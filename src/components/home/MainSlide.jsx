@@ -10,18 +10,18 @@ const MainSlideBlock = styled.div`
     height:40vw; 
     background-position:center; 
     background-size:cover; 
-    &.slide1 { background-image:url('./assets/image/1.jpg')}
-    &.slide2 { background-image:url('./assets/image/2.jpg')}
-    &.slide3 { background-image:url('./assets/image/3.jpg')}
+    &.slide1 { background-image:url('./assets/image/main01.jpg')}
+    &.slide2 { background-image:url('./assets/image/main02.jpg')}
+    &.slide3 { background-image:url('./assets/image/main03.jpg')}
   }
   .slick-dots {
     position:absolute;
     bottom:50px;
     left:50%; 
-    transform:translateX(-50%);
-    li { display:inline-block; margin:0 10px;  
-      button { width:40px; height:40px; 
-        background:red; border-radius:50%;
+    transform:translateX(-50%, -50%);
+    li { display:inline-block; margin:0 15px;  
+      button { width:12px; height:12px; 
+        background:#000; border-radius:50%;
         text-indent:-9999px; overflow:hidden; 
       }
       &.slick-active {
@@ -30,11 +30,45 @@ const MainSlideBlock = styled.div`
     }
   }
   .slick-arrow {
-    position:absolute; top:50%; transform:translateY(-50%); 
-    font-size:50px; color:#f00; 
-    &.slick-prev { left:50px;  z-index:9999 }
-    &.slick-next { right:50px;  } 
-  }
+    position:absolute; top:50%; transform:translateX(-50%, -50%); 
+    font-size:20px; color:#fff; opacity:0.5; 
+    &.slick-prev { left:70px;  z-index:9999 }
+    &.slick-next { right:70px;  } 
+    
+    }
+    
+  .slick-arrow:hover{
+  opacity:1;  animation: arrowHover 0.9s forwards;
+}
+@keyframes arrowHoverIn {
+    0% {
+        opacity: 0.5;
+        transform: translateY(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes arrowHoverOut {
+    0% {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+    100% {
+        opacity: 0.5;
+        transform: translateY(-50%);
+    }
+}
+
+.slick-arrow:hover {
+  animation: arrowHoverIn 0.3s forwards;
+}
+
+.slick-arrow:not(:hover) {
+  animation: arrowHoverOut 0.3s forwards;
+}
 `
 
 const MainSlide = () => {
@@ -45,8 +79,9 @@ const MainSlide = () => {
     slidesToShow:1,
     slidesToScroll:1,
     arrows:true,
-    prevArrow : <IoIosArrowDropleftCircle />,
-    nextArrow : <IoIosArrowDroprightCircle />
+    fade:true,
+    prevArrow : <img src='./assets/image/dsadsa.png' alt='' />,
+    nextArrow : <img src='./assets/image/asdasd.png' alt=''/>
   }
   return (
     <MainSlideBlock>

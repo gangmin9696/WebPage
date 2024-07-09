@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 
 const FooterBlock = styled.div`
-  background:#454a56;
+  background:#000;
   padding:50px 0; 
   color:#fff;
   .row {
