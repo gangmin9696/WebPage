@@ -1,0 +1,129 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import {
+    IoIosArrowDropleftCircle,
+    IoIosArrowDroprightCircle,
+} from "react-icons/io";
+
+//사진의 장수가 많아질 때 이렇게 관리하는게 좋음
+
+const MinislideBlock = styled.div`
+    position: relative;
+    padding: 0 30px;
+    margin: 50px auto;
+    img {
+        width: 90%;
+        margin: 0 5%;
+    }
+    .slick-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 30px;
+        color: #f00;
+        &.slick-prev {
+            left: -30px;
+            z-index: 9999;
+        }
+        &.slick-next {
+            right: -30px;
+        }
+    }
+`;
+
+const MiniSlide = () => {
+    const [currentImage, setCurrentImage] = useState(null);
+    const handleMouserOver = (아무렇게나써도되는매개변수내맘대로집어넣자) => {
+        setCurrentImage(아무렇게나써도되는매개변수내맘대로집어넣자);
+    };
+    const sliders = [
+        {
+            image1: "./assets/img/Bmain1.jpg",
+            image2: "./assets/img/main1.jpg",
+            alt: "매장판매",
+        },
+        {
+            image1: "./assets/img/Bmain2.jpg",
+            image2: "./assets/img/main2.jpg",
+            alt: "사전예약",
+        },
+        {
+            image1: "./assets/img/Bmain3.jpg",
+            image2: "./assets/img/main3.jpg",
+            alt: "특별할인",
+        },
+        {
+            image1: "./assets/img/Bmain4.jpg",
+            image2: "./assets/img/main4.jpg",
+            alt: "파리올림픽",
+        },
+        {
+            image1: "./assets/img/Bmain1.jpg",
+            image2: "./assets/img/main1.jpg",
+            alt: "매장판매",
+        },
+        {
+            image1: "./assets/img/Bmain2.jpg",
+            image2: "./assets/img/main2.jpg",
+            alt: "사전예약",
+        },
+        {
+            image1: "./assets/img/Bmain3.jpg",
+            image2: "./assets/img/main3.jpg",
+            alt: "특별할인",
+        },
+        {
+            image1: "./assets/img/Bmain4.jpg",
+            image2: "./assets/img/main4.jpg",
+            alt: "파리올림픽",
+        },
+    ];
+    const options = {
+        dots: false,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        slidesToShow: 3,
+        slidexToScroll: 1,
+        arrows: true,
+        prevArrow: <IoIosArrowDropleftCircle />,
+        nextArrow: <IoIosArrowDroprightCircle />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2, //보여질 슬라이드 수
+                },
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 1, //보여질 슬라이드 수
+                },
+            },
+        ],
+    };
+    return (
+        <MinislideBlock className="row">
+            <Slider {...options}>
+                {sliders.map((item, index) => (
+                    <div key={index}>
+                        <img
+                            src={
+                                currentImage === index
+                                    ? item.image2
+                                    : item.image1
+                            }
+                            alt={item.alt}
+                            onMouseOver={() => handleMouserOver(index)}
+                            onMouseOut={() => setCurrentImage(null)}
+                        />
+                    </div>
+                ))}
+            </Slider>
+        </MinislideBlock>
+    );
+};
+
+export default MiniSlide;
